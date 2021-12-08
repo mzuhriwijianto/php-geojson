@@ -19,7 +19,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <caption>Selamat datang, M. Zuhri Wijianto...</caption>
+                    <caption>Peta Kabupaten Bojonegoro</caption>
                 </div>
                     <div id="peta" style="width: 100%;height: 70vh;"></div>
                 </div>
