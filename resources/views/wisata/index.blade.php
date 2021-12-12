@@ -6,12 +6,12 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <caption>Daftar Wisata Bojonegoro</caption>
+                    <caption>Data Wisata</caption>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-4 col-md-3 col-lg-2">
-                            <a href="{{route('maps.create')}}" class="btn btn-dark btn-block-mb-2">Tambah Wisata</a>
+                            <a href="{{route('wisata.create')}}" class="btn btn-dark btn-block-mb-2">Add Wisata</a>
                         </div>
                     </div>
                     @if (session('status'))
@@ -23,37 +23,53 @@
                         <thead class="table-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nama Wisata</th>
+                            <th scope="col">Nama</th>
                             <th scope="col">Lokasi</th>
-                            <th scope="col">Deskripsi Wisata</th>
-                            <th scope="col">Geo</th>
+                            <th scope="col">Deskripsi</th>
+                            <th scope="col">Geografi</th>
                             <th scope="col">Created At</th>
                             <th scope="col">Updated At</th>
                             <th scope="col" class="text-center">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @forelse ($maps as $key => $maps)
+                            @forelse ($wisatas as $key => $wisatas)
                             <tr>
-                                <th scope="row">{{ $maps->firstItem() + $key}}</th>
-                                <td>{{$maps->nama}}</td>
-                                <td>{{$maps->lokasi}}</td>
-                                <td>{{$maps->description}}</td>
-                                {{-- <td>{{$maps->geo}}</td>
-                                <td>{{$maps->created_at}}</td>
-                                <td>{{$maps->updated_at}}</td>
+                                <th scope="row">{{ $wisatas->firstItem() + $key}}</th>
+                                <td>{{$wisata->nama}}</td>
+                                <td>
+                                    @if ($wisata->geo)
+                                        <img src="{{ asset('storage/'.$book->cover) }}" alt="Book Cover" width="100px">
+                                    @else
+                                        <span class="badge bg-danger">Cover belum diupload</span>
+                                    @endif
+                                </td>
+                                <td>{{$wisata->lokasi}}</td>
+                                <td>
+                                    @forelse ($wisata->categories as $category)
+
+                                    <li>{{ $category->name }}</li>
+
+                                    @empty
+
+                                    <li>Buku tidak memiliki kategori</li>
+
+                                    @endforelse
+                                </td>
+                                <td>{{$wisata->created_at}}</td>
+                                <td>{{$wisata->updated_at}}</td>
                                 <td class="text-center">
-                                    <a href="{{route('maps.edit', ['maps'=>$maps->id])}}" class="btn btn-primary"><b>Edit Lokasi</b></a>
+                                    <a href="{{route('wisata.edit', ['wisata'=>$wisata->id])}}" class="btn btn-primary"><b>Edit</b></a>
                                     @component('components.delete')
                                         @slot('url')
-                                            {{ route('maps.destroy', ['maps'=>$maps->id]) }}
+                                            {{ route('wisata.destroy', ['wisata'=>$wisata->id]) }}
                                         @endslot
                                         @slot('value')
                                             Hapus
                                         @endslot
                                     @endcomponent
                                 </td>
-                            </tr> --}}
+                            </tr>
                             @empty
                             <tr>
                                 <td colspan="5">Data empty</td>
@@ -62,12 +78,11 @@
                         </tbody>
                     </table>
                     <div class="float-right">
-                        {{ $maps->onEachSide(1)->links() }}
+                        {{ $wisatas->onEachSide(1)->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection

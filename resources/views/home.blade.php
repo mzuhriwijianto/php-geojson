@@ -13,15 +13,15 @@
 <body>
 <div class="container" box-shadow>
     <div class="row">
-        <div class="col-4 col-md-3 col-lg-2">
+        {{-- <div class="col-4 col-md-3 col-lg-2">
             <a href="{{route('maps.create')}}" class="btn btn-dark btn-block-mb-2">Tambah Wisata</a>
-        </div>
+        </div> --}}
         <div class="col">
             <div class="card">
                 <div class="card-header">
                     <caption>Peta Kabupaten Bojonegoro</caption>
                 </div>
-                    <div id="peta" style="width: 100%;height: 70vh;"></div>
+                    <div id="peta" style="width: 100%;height: 80vh;"></div>
                 </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
             container: 'peta',
             style: 'mapbox://styles/zuhriwijianto/ckwwgd35oft0x15nvr7zegihf',
             center: [111.88028062855591, -7.149526000599138],
-            zoom: 16
+            zoom: 15
         });
 
         new mapboxgl.Marker().setLngLat([106.69972796989238, -6.238601629433243])

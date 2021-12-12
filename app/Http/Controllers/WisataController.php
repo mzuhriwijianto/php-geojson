@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\wisata;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers;
 
-class MapsController extends Controller
+class WisataController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +15,7 @@ class MapsController extends Controller
      */
     public function index()
     {
-        $maps = Cache::remember(implode('-', request()->all()), 900, function () {
-            return maps::with('maps')->paginate(10); //Lazy load
-        });
-
-        return view('book.index', [
-            'maps' => $maps
-        ]);
+        return view('wisata.index');
     }
 
     /**
@@ -32,7 +25,7 @@ class MapsController extends Controller
      */
     public function create()
     {
-        return view('Maps.create');
+        //
     }
 
     /**
@@ -43,22 +36,16 @@ class MapsController extends Controller
      */
     public function store(Request $request)
     {
-        $Maps = new Maps();
-        $Maps->nama = $request->nama;
-        $Maps->lokasi = $request->lokasi;
-        $Maps->description = $request->description;
-        $Maps->save();
-
-        return redirect()->route('maps.index')->with('status', 'wisata berhasil ditambahkan');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\maps  $maps
+     * @param  \App\Models\wisata  $wisata
      * @return \Illuminate\Http\Response
      */
-    public function show(maps $maps)
+    public function show(wisata $wisata)
     {
         //
     }
@@ -66,10 +53,10 @@ class MapsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\maps  $maps
+     * @param  \App\Models\wisata  $wisata
      * @return \Illuminate\Http\Response
      */
-    public function edit(maps $maps)
+    public function edit(wisata $wisata)
     {
         //
     }
@@ -78,10 +65,10 @@ class MapsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\maps  $maps
+     * @param  \App\Models\wisata  $wisata
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, maps $maps)
+    public function update(Request $request, wisata $wisata)
     {
         //
     }
@@ -89,10 +76,10 @@ class MapsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\maps  $maps
+     * @param  \App\Models\wisata  $wisata
      * @return \Illuminate\Http\Response
      */
-    public function destroy(maps $maps)
+    public function destroy(wisata $wisata)
     {
         //
     }
