@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'PHP-GeoJSON'),
+    'name' => env('APP_NAME', 'Geographic Information Sytem - Tourism Bojonegoro'),
 
     /*
     |--------------------------------------------------------------------------

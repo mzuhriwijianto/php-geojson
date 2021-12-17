@@ -1,19 +1,25 @@
 <div class="container-fluid">
 
+<div class="container-fluid">
 <div class="row">
     <div class="col-md-8">
         <div class="card-header bg-white shadow-sm">
             Peta Kabupaten Bojonegoro
         </div>
         <div class="card-body">
-        <div wire:ignore id='map' style='width: 100%; height: 70vh;'></div>
+        <div wire:ignore id='map' style='width: 100%; height: 80vh;'></div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="card-header bg-white shadow-sm">
-            Form
-        </div>
-        <div class="card-body">
+        <div class="accordion accordion-flush bg-white shadow-sm" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                Form
+            </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
