@@ -1,25 +1,23 @@
 <div class="container-fluid">
-<div class="row">
-    <div class="col-md-8">
-        <div class="card-header bg-white shadow-sm">
-            Peta Kabupaten Bojonegoro
-        </div>
-        <div class="card-body">
-        <div wire:ignore id='map' style='width: 100%; height: 80vh;'></div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-white shadow-sm">
+                    Peta Kabupaten Bojonegoro
+                </div>
+            <div class="card-body">
+                <div wire:ignore id='map' style='width: 100%; height: 80vh;'></div>
+            </div>
         </div>
     </div>
 
-
     <div class="col-md-4">
-        <div class="accordion accordion-flush bg-white shadow-sm" id="accordionFlushExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+        <div class="card">
+            <div class="card-header bg-white shadow-sm">
                 Form
-            </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
+            </div>
+        <div class="card-body">
+            <form>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -33,86 +31,55 @@
                             <input wire:model="lat" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            Nama Wisata
-                            <input id="nama" type="text" class="form-control">
-                        </div>
-                    </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label>Nama Wisata</label>
+                    <input wire:model="title" type="text" class="form-control">
+                    @error('title')
+                        <small class="text-danger">{{$message}}
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label>Deskripsi</label>
+                    <textarea wire:model="description" type="text" class="form-control"></textarea>
+                    @error('description')
+                        <small class="text-danger">{{$message}}
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label>Gambar</label>
+                    <div class="custom-file">
+                        <input wire:model="image" type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose File</label>
+                        @error('image')
+                            <small class="text-danger">{{$message}}
+                        @enderror
+                    </div>
+                        @if ($image)
+                            <img src="{{$image->temporaryUrl()}}" class="img-fluid">
+                        @endif
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-dark text-white btn-block">Simpan Lokasi</button>
+                </div>
+            </form>
         </div>
-    </div>
-</div>
 
-<div style="overflow-y, auto;max-height">
 
-</div>
 @push('scripts')
 
 <script>
     document.addEventListener('livewire:load', () => {
-    const defaultLocation = [111.8834409080842, -7.1529622913238455]
+    const defaultLocation = [111.88004283992683, -7.150176377032395]
 
     mapboxgl.accessToken = '{{ env("MAPBOX_KEY") }}';
     var map = new mapboxgl.Map({
         container: 'map',
         center:defaultLocation,
-        zoom: 11.15
+        zoom: 15
     });
-    // var geocoder = new MapboxGeocoder({
-    //         accessToken: mapboxgl.accessToken,
-    //         mapboxgl: mapboxgl
-    //     });
 
-    const geoJson = {
-        "type": "FeatureCollection",
-        "features": [
-            {
-            "type": "Feature",
-            "geometry": {
-                "coordinates": [
-                "111.97897716892481", "-7.169424104950622"
-                ],
-                "type": "Point"
-            },
-            "properties": {
-                "message": "Mantap",
-                "iconSize": [
-                50,
-                50
-                ],
-                "locationId": 1,
-                "title": "Hello new",
-                "image": "https://www.clipartmax.com/png/small/117-1179307_filemap-pin-icon-green-map-marker-png-green.png",
-                "description": "Wisata Taman Pinggir Nggawan (TPG) Desa Pilanggede"
-            }
-            },
-            {
-            "type": "Feature",
-            "geometry": {
-                "coordinates": [
-                "111.88581541094817", "-7.154683661813749"
-                ],
-                "type": "Point"
-            },
-            "properties": {
-                "message": "Mantap",
-                "iconSize": [
-                50,
-                50
-                ],
-                "locationId": 2,
-                "title": "Hello new",
-                "image": "https://www.clipartmax.com/png/small/117-1179307_filemap-pin-icon-green-map-marker-png-green.png",
-                "description": "Alun Alun Kota Bojonegoro"
-            }
-            },
-        ]
-        }
-
-    //dd();
-    const loadLocations = () => {
+    const loadLocations = (geoJson) => {
         geoJson.features.forEach((location) => {
             const {geometry, properties} = location
             const {iconSize, locationId, title, image, description} = properties
@@ -120,18 +87,35 @@
             let markerElement = document.createElement('div')
             markerElement.className = 'marker' + locationId
             markerElement.id = locationId
-            markerElement.style.backgroundImage = 'url(https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png)'
+            markerElement.style.backgroundImage = 'url(https://toppng.com/public/uploads/preview/in-location-map-icon-navigation-symbol-ma-google-maps-marker-blue-11562916561qaf3tyejum.png)'
             markerElement.style.backgroundSize = 'cover'
             markerElement.style.width = '50px'
             markerElement.style.height = '50px'
 
             const content = `
-
+                <div class="table table-sm- mt-2" style="overflow-y, auto;max-height:400px,width:100%">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Title</td>
+                                <td>${title}</td>
+                            </tr>
+                            <tr>
+                                <td>Picture</td>
+                                <td><img src="${image}" loading="lazy" class="img-fluid">Title</td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td>${description}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             `
 
             const popUp = new mapboxgl.Popup({
                 offset:25
-            }).setHTML(description).setMaxWidth("400px")
+            }).setHTML(content).setMaxWidth("400px")
 
             new mapboxgl.Marker(markerElement)
             .setLngLat(geometry.coordinates)
@@ -140,9 +124,14 @@
         })
     }
 
-    loadLocations()
+    loadLocations({!! $geoJson !!})
 
-    const style = "dark-v10"
+    //Coding belum selesai
+    window.addEventListener('locationAdded', (e) => {
+        loadLocations(JSON.parse(e.detail))
+    })
+
+    const style = "light-v10"
     map.setStyle(`mapbox://styles/mapbox/${style}`)
 
     map.addControl (new mapboxgl.NavigationControl())
