@@ -1,6 +1,4 @@
 <div class="container-fluid">
-
-<div class="container-fluid">
 <div class="row">
     <div class="col-md-8">
         <div class="card-header bg-white shadow-sm">
@@ -10,6 +8,8 @@
         <div wire:ignore id='map' style='width: 100%; height: 80vh;'></div>
         </div>
     </div>
+
+
     <div class="col-md-4">
         <div class="accordion accordion-flush bg-white shadow-sm" id="accordionFlushExample">
         <div class="accordion-item">
@@ -33,20 +33,26 @@
                             <input wire:model="lat" type="text" class="form-control">
                         </div>
                     </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            Nama Wisata
+                            <input id="nama" type="text" class="form-control">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<div style="overflow-y, auto;max-height">
 
 </div>
-
 @push('scripts')
 
 <script>
     document.addEventListener('livewire:load', () => {
-    const defaultLocation = [111.87041794010162, -7.159341771086332]
+    const defaultLocation = [111.8834409080842, -7.1529622913238455]
 
     mapboxgl.accessToken = '{{ env("MAPBOX_KEY") }}';
     var map = new mapboxgl.Map({
@@ -54,6 +60,10 @@
         center:defaultLocation,
         zoom: 11.15
     });
+    // var geocoder = new MapboxGeocoder({
+    //         accessToken: mapboxgl.accessToken,
+    //         mapboxgl: mapboxgl
+    //     });
 
     const geoJson = {
         "type": "FeatureCollection",
@@ -62,8 +72,7 @@
             "type": "Feature",
             "geometry": {
                 "coordinates": [
-                "111.89192849857062",
-                "-7.156782996467101"
+                "111.97897716892481", "-7.169424104950622"
                 ],
                 "type": "Point"
             },
@@ -73,120 +82,36 @@
                 50,
                 50
                 ],
-                "locationId": 30,
+                "locationId": 1,
                 "title": "Hello new",
-                "image": "https://icon2.cleanpng.com/20180403/caq/kisspng-google-map-maker-google-maps-computer-icons-openst-map-marker-5ac30986b07bc7.8541015415227313987229.jpg",
-                "description": "Mantap"
+                "image": "https://www.clipartmax.com/png/small/117-1179307_filemap-pin-icon-green-map-marker-png-green.png",
+                "description": "Wisata Taman Pinggir Nggawan (TPG) Desa Pilanggede"
             }
             },
             {
             "type": "Feature",
             "geometry": {
                 "coordinates": [
-                "111.94963283510384",
-                "-7.1528957623056755"
+                "111.88581541094817", "-7.154683661813749"
                 ],
                 "type": "Point"
             },
             "properties": {
-                "message": "oke mantap Edit",
+                "message": "Mantap",
                 "iconSize": [
                 50,
                 50
                 ],
-                "locationId": 29,
-                "title": "Rumah saya Edit",
-                "image": "https://icon2.cleanpng.com/20180403/caq/kisspng-google-map-maker-google-maps-computer-icons-openst-map-marker-5ac30986b07bc7.8541015415227313987229.jpg",
-                "description": "oke mantap Edit"
+                "locationId": 2,
+                "title": "Hello new",
+                "image": "https://www.clipartmax.com/png/small/117-1179307_filemap-pin-icon-green-map-marker-png-green.png",
+                "description": "Alun Alun Kota Bojonegoro"
             }
             },
-            {
-            "type": "Feature",
-            "geometry": {
-                "coordinates": [
-                "111.81843716903137",
-                "-7.162720156433281"
-                ],
-                "type": "Point"
-            },
-            "properties": {
-                "message": "Update Baru",
-                "iconSize": [
-                50,
-                50
-                ],
-                "locationId": 22,
-                "title": "Update Baru Gambar",
-                "image": "https://icon2.cleanpng.com/20180403/caq/kisspng-google-map-maker-google-maps-computer-icons-openst-map-marker-5ac30986b07bc7.8541015415227313987229.jpg",
-                "description": "Update Baru"
-            }
-            },
-            {
-            "type": "Feature",
-            "geometry": {
-                "coordinates": [
-                "111.89074553940748",
-                "-7.159585622897609"
-                ],
-                "type": "Point"
-            },
-            "properties": {
-                "message": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                "iconSize": [
-                50,
-                50
-                ],
-                "locationId": 19,
-                "title": "awdwad",
-                "image": "f0b88ffd980a764b9fca60d853b300ff.png",
-                "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-            }
-            },
-            {
-            "type": "Feature",
-            "geometry": {
-                "coordinates": [
-                "111.95682351052972",
-                "-7.208755030465468"
-                ],
-                "type": "Point"
-            },
-            "properties": {
-                "message": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                "iconSize": [
-                50,
-                50
-                ],
-                "locationId": 18,
-                "title": "adwawd",
-                "image": "4c35cb1b76af09e6205f94024e093fe6.jpeg",
-                "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-            }
-            },
-            {
-            "type": "Feature",
-            "geometry": {
-                "coordinates": [
-                "111.91110289414672",
-                "-7.154122027522945"
-                ],
-                "type": "Point"
-            },
-            "properties": {
-                "message": "awdwad",
-                "iconSize": [
-                50,
-                50
-                ],
-                "locationId": 12,
-                "title": "adawd",
-                "image": "https://icon2.cleanpng.com/20180403/caq/kisspng-google-map-maker-google-maps-computer-icons-openst-map-marker-5ac30986b07bc7.8541015415227313987229.jpg",
-                "description": "awdwad"
-            }
-            }
         ]
         }
 
+    //dd();
     const loadLocations = () => {
         geoJson.features.forEach((location) => {
             const {geometry, properties} = location
@@ -195,28 +120,38 @@
             let markerElement = document.createElement('div')
             markerElement.className = 'marker' + locationId
             markerElement.id = locationId
-            markerElement.style.backgroundImage = 'url(https://icon2.cleanpng.com/20180403/caq/kisspng-google-map-maker-google-maps-computer-icons-openst-map-marker-5ac30986b07bc7.8541015415227313987229.jpg)'
+            markerElement.style.backgroundImage = 'url(https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png)'
             markerElement.style.backgroundSize = 'cover'
             markerElement.style.width = '50px'
-            markerElement.style.heigth = '50px'
+            markerElement.style.height = '50px'
+
+            const content = `
+
+            `
+
+            const popUp = new mapboxgl.Popup({
+                offset:25
+            }).setHTML(description).setMaxWidth("400px")
 
             new mapboxgl.Marker(markerElement)
             .setLngLat(geometry.coordinates)
+            .setPopup(popUp)
             .addTo(map)
         })
     }
 
     loadLocations()
 
-    const style = "navigation-night-v1"
+    const style = "dark-v10"
     map.setStyle(`mapbox://styles/mapbox/${style}`)
 
     map.addControl (new mapboxgl.NavigationControl())
+
     //map.addControl (new mapboxgl.MapboxGeocoder())
 
     map.on('click', (e) => {
-            const longtitude = e.lngLat.lng
-            const lattitude = e.lngLat.lat
+            var longtitude = e.lngLat.lng
+            var lattitude = e.lngLat.lat
 
             @this.long = longtitude
             @this.lat = lattitude
