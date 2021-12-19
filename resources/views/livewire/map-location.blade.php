@@ -39,14 +39,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Nama Wisata</label>
+                    <label>Instansi</label>
                     <input wire:model="title" type="text" class="form-control">
                     @error('title')
                         <small class="text-danger">{{$message}}
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Deskripsi</label>
+                    <label>Alamat</label>
                     <textarea wire:model="description" class="form-control"></textarea>
                     @error('description')
                         <small class="text-danger">{{$message}}
@@ -94,25 +94,27 @@
             let markerElement = document.createElement('div')
             markerElement.className = 'marker' + locationId
             markerElement.id = locationId
-            markerElement.style.backgroundImage = 'url(https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/000000/external-place-hotel-kiranshastry-gradient-kiranshastry.png)'
+            markerElement.style.backgroundImage = 'url(https://img.icons8.com/color/48/000000/place-marker--v2.png)'
             markerElement.style.backgroundSize = 'cover'
             markerElement.style.width = '50px'
             markerElement.style.height = '50px'
+
+            const imageStorage = '{{asset("storage/images")}}' + '/' + image
 
             const content = `
                 <div class="table table-sm- mt-2" style="overflow-y, auto;max-height:400px,width:100%">
                     <table>
                         <tbody>
                             <tr>
-                                <td>Title</td>
+                                <td>Instansi</td>
                                 <td>${title}</td>
                             </tr>
                             <tr>
-                                <td>Picture</td>
-                                <td><img src="${image}" loading="lazy" class="img-fluid">Title</td>
+                                <td>Gambar</td>
+                                <td><img src="${imageStorage}" class="img-fluid">${image}</td>
                             </tr>
                             <tr>
-                                <td>Description</td>
+                                <td>Alamat</td>
                                 <td>${description}</td>
                             </tr>
                         </tbody>
@@ -131,6 +133,7 @@
         })
     }
 
+    // loadlocations dari convert geoJson MapLocation
     loadLocations({!! $geoJson !!})
 
     //Coding belum selesai

@@ -68,12 +68,12 @@ class MapLocation extends Component
             'image' => 'image|max:2048|required',
         ]);
 
-        $imageName = md5($this->image . microtime()) . '.' . $this->image->extension();
+        $image = md5($this->image . microtime()) . '.' . $this->image->extension();
 
         Storage::putFileAs(
             'public/images',
             $this->image,
-            $imageName
+            $image
         );
 
         location::create([
@@ -81,11 +81,12 @@ class MapLocation extends Component
             'lat' => $this->lat,
             'title' => $this->title,
             'description' => $this->description,
-            'image' => $this->image,
+            'image' => $image,
         ]);
 
         $this->clearForm();
         $this->loadlocations();
+        // Location added convert to geoJson
         $this->dispatchBrowserEvent('locationAdded', $this->geoJson);
     }
 
