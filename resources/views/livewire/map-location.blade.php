@@ -150,6 +150,7 @@
 
     //map.addControl (new mapboxgl.MapboxGeocoder())
 
+    // menambahkan long dan lat
     map.on('click', (e) => {
             var longtitude = e.lngLat.lng
             var lattitude = e.lngLat.lat
