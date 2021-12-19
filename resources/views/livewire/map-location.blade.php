@@ -17,18 +17,24 @@
                 Form
             </div>
         <div class="card-body">
-            <form>
+            <form wire:submit.prevent="savelocation">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Longtitude</label>
-                            <input wire:model="long" type="text" class="form-control">
+                            <input wire:model="long" type="text" class="form-control" class="text-muted">
+                            @error('long')
+                                <small class="text-danger">{{$message}}
+                            @enderror
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Lattitude</label>
-                            <input wire:model="lat" type="text" class="form-control">
+                            <input wire:model="lat" type="text" class="form-control" class="text-muted">
+                            @error('lat')
+                                <small class="text-danger">{{$message}}
+                            @enderror
                         </div>
                     </div>
                 </div>
