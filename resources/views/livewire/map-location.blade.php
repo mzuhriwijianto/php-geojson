@@ -3,18 +3,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-white shadow-sm">
-                    Peta Kabupaten Bojonegoro
+                    Maps Office Bojonegoro City
                 </div>
             <div class="card-body">
                 <div wire:ignore id='map' style='width: 100%; height: 80vh;'></div>
             </div>
         </div>
     </div>
-
     <div class="col-md-4">
         <div class="card">
             <div class="card-header bg-white shadow-sm">
-                Form
+                Form Input
             </div>
         <div class="card-body">
             <form wire:submit.prevent="savelocation">
@@ -71,14 +70,16 @@
                 </div>
             </form>
         </div>
-
+    </div>
+</div>
 
 @push('scripts')
 
 <script>
     document.addEventListener('livewire:load', () => {
-    const defaultLocation = [111.88004283992683, -7.150176377032395]
+    const defaultLocation = [111.8823375987817, -7.150638653498348]
 
+    // load mapbox token
     mapboxgl.accessToken = '{{ env("MAPBOX_KEY") }}';
     var map = new mapboxgl.Map({
         container: 'map',
