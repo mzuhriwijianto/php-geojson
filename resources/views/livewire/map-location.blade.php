@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label>Deskripsi</label>
-                    <textarea wire:model="description" type="text" class="form-control"></textarea>
+                    <textarea wire:model="description" class="form-control"></textarea>
                     @error('description')
                         <small class="text-danger">{{$message}}
                     @enderror
@@ -49,8 +49,9 @@
                 <div class="form-group">
                     <label>Gambar</label>
                     <div class="custom-file">
-                        <input wire:model="image" type="file" class="custom-file-input" id="customFile">
+                            <input wire:model="image" type="file" class="custom-file-input" id="customFile">
                             <label class="custom-file-label" for="customFile">Choose File</label>
+                    <br/>
                         @error('image')
                             <small class="text-danger">{{$message}}
                         @enderror
@@ -87,7 +88,7 @@
             let markerElement = document.createElement('div')
             markerElement.className = 'marker' + locationId
             markerElement.id = locationId
-            markerElement.style.backgroundImage = 'url(https://toppng.com/public/uploads/preview/in-location-map-icon-navigation-symbol-ma-google-maps-marker-blue-11562916561qaf3tyejum.png)'
+            markerElement.style.backgroundImage = 'url(https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/000000/external-place-hotel-kiranshastry-gradient-kiranshastry.png)'
             markerElement.style.backgroundSize = 'cover'
             markerElement.style.width = '50px'
             markerElement.style.height = '50px'
@@ -131,7 +132,8 @@
         loadLocations(JSON.parse(e.detail))
     })
 
-    const style = "light-v10"
+    //mengganti tema
+    const style = "navigation-night-v1"
     map.setStyle(`mapbox://styles/mapbox/${style}`)
 
     map.addControl (new mapboxgl.NavigationControl())
